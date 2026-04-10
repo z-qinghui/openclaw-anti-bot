@@ -7,3 +7,5 @@ vnc-data/
 *.pid
 tmp/
 *.bak
+vendor/**/*.deb
+vendor/**/*.tar.gz

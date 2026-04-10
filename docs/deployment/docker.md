@@ -16,13 +16,16 @@
 git clone https://github.com/z-qinghui/smart-browser.git
 cd smart-browser
 
-# 2. 启动服务
+# 2. 下载 vendor 依赖（可选，提升构建速度）
+./scripts/download-vendor.sh
+
+# 3. 启动服务
 docker-compose up -d
 
-# 3. 查看日志
+# 4. 查看日志
 docker-compose logs -f
 
-# 4. 验证安装
+# 5. 验证安装
 curl http://localhost:6080/vnc.html
 ```
 
@@ -67,6 +70,22 @@ volumes:
   - ./vnc-data:/root/.vnc           # VNC 配置
 ```
 
+## vendor 依赖说明
+
+项目使用 vendor 目录存储离线依赖包，包含：
+
+- `chrome-installers/google-chrome-stable.deb` - Chrome 安装包 (~120MB)
+- `noVNC/` - noVNC 源码
+
+**不提交到 Git**：大型二进制文件（.deb）通过 `.gitignore` 排除
+
+**下载依赖**：
+```bash
+./scripts/download-vendor.sh
+```
+
+**国内镜像**：脚本自动检测网络环境，使用清华镜像/Gitee 加速下载
+
 ## 故障排查
 
 ```bash
@@ -83,4 +102,14 @@ docker-compose restart
 docker-compose down
 docker-compose build
 docker-compose up -d
+```
+
+### vendor 目录不完整
+
+```bash
+# 重新下载依赖
+./scripts/download-vendor.sh
+
+# 重新构建镜像
+docker-compose build --no-cache
 ```

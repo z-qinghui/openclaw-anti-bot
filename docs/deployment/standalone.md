@@ -16,10 +16,13 @@
 git clone https://github.com/z-qinghui/smart-browser.git ~/.claude/skills/smart-browser
 cd ~/.claude/skills/smart-browser
 
-# 2. 运行安装脚本
+# 2. 下载 vendor 依赖（推荐，提升安装速度）
+./scripts/download-vendor.sh
+
+# 3. 运行安装脚本
 sudo ./scripts/install.sh
 
-# 3. 验证安装
+# 4. 验证安装
 ./scripts/check-deps.sh
 ```
 
@@ -42,6 +45,22 @@ sudo ./scripts/install.sh
 # 检查依赖
 ./scripts/check-deps.sh
 ```
+
+## vendor 依赖说明
+
+项目使用 vendor 目录存储离线依赖包，包含：
+
+- `chrome-installers/google-chrome-stable.deb` - Chrome 安装包 (~120MB)
+- `noVNC/` - noVNC 源码
+
+**不提交到 Git**：大型二进制文件（.deb）通过 `.gitignore` 排除
+
+**下载依赖**：
+```bash
+./scripts/download-vendor.sh
+```
+
+**国内镜像**：脚本自动检测网络环境，使用清华镜像/Gitee 加速下载
 
 ## 故障排查
 
@@ -68,4 +87,15 @@ curl http://localhost:9222/json/version
 # 重启 CDP Proxy
 pkill -f cdp-proxy.mjs
 node scripts/cdp-proxy.mjs &
+```
+
+### vendor 下载失败
+
+```bash
+# 手动下载 Chrome
+wget https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_146.0.7680.177-1_amd64.deb \
+  -O vendor/chrome-installers/google-chrome-stable.deb
+
+# 手动克隆 noVNC
+git clone --depth 1 https://github.com/novnc/noVNC.git vendor/noVNC
 ```
