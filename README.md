@@ -1,10 +1,12 @@
-# smart-browser
+# openclaw-anti-bot
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Claude Code Skill](https://img.shields.io/badge/Claude_Code-Skill-blue)](https://claude.ai/code)
 [![OpenClaw Compatible](https://img.shields.io/badge/OpenClaw-Compatible-green)](https://github.com/openclaw/openclaw)
 
 一站式智能浏览器自动化解决方案，支持反爬网站访问（微信公众号、小红书、知乎）和人机协作 VNC 通道。
+
+> **注意**：GitHub 仓库名为 `openclaw-anti-bot`，项目内部名称仍为 `smart-browser`。
 
 ## ✨ 特性
 
@@ -19,7 +21,7 @@
 ### 模式 A：独立模式（推荐 Claude Code 用户）
 
 ```bash
-git clone https://github.com/z-qinghui/smart-browser.git ~/.claude/skills/smart-browser
+git clone https://github.com/z-qinghui/openclaw-anti-bot.git ~/.claude/skills/smart-browser
 cd ~/.claude/skills/smart-browser
 ./scripts/install.sh
 ```
@@ -30,7 +32,7 @@ cd ~/.claude/skills/smart-browser
 ### 模式 B：Docker 托管模式
 
 ```bash
-git clone https://github.com/z-qinghui/smart-browser.git
+git clone https://github.com/z-qinghui/openclaw-anti-bot.git
 cd smart-browser
 docker-compose up -d
 ```
